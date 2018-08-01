@@ -42,10 +42,12 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
     activity.webpageURL = [NSURL URLWithString:webpageURL];
     activity.userInfo = userInfo;
 
-    if (@available(iOS 12.0, *)) {
-        activity.eligibleForPrediction = isEligibleForPrediction;
-        activity.persistentIdentifier = persistentIdentifier;
-    }
+    #ifdef __IPHONE_12_0
+        if (@available(iOS 12.0, *)) {
+            activity.eligibleForPrediction = isEligibleForPrediction;
+            activity.persistentIdentifier = persistentIdentifier;
+        }
+    #endif
 
     activity.keywords = [NSSet setWithArray:@[title]];
 
