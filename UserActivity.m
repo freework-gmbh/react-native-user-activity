@@ -34,15 +34,18 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
 
     NSUserActivity* activity = [[NSUserActivity alloc] initWithActivityType:activityType];
 
-    activity.isEligibleForSearch = isEligibleForSearch;
-    activity.isEligibleForPrediction = isEligibleForPrediction;
-    activity.isEligibleForPublicIndexing = isEligibleForPublicIndexing;
-    activity.isEligibleForHandoff = isEligibleForHandoff;
+    activity.eligibleForSearch = isEligibleForSearch;
+    activity.eligibleForPublicIndexing = isEligibleForPublicIndexing;
+    activity.eligibleForHandoff = isEligibleForHandoff;
 
     activity.title = title;
     activity.webpageURL = [NSURL URLWithString:webpageURL];
     activity.userInfo = userInfo;
-    activity.persistentIdentifier = persistentIdentifier;
+
+    if (@available(iOS 12.0, *)) {
+        activity.eligibleForPrediction = isEligibleForPrediction;
+        activity.persistentIdentifier = persistentIdentifier;
+    }
 
     activity.keywords = [NSSet setWithArray:@[title]];
 
