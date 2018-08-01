@@ -8,10 +8,12 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(
   createActivity:(NSString *)activityType
-  eligibleForSearch:(BOOL)eligibleForSearch
-  eligibleForPublicIndexing:(BOOL)eligibleForPublicIndexing
-  eligibleForHandoff:(BOOL)eligibleForHandoff
+  isEligibleForSearch:(BOOL)isEligibleForSearch
+  isEligibleForPrediction:(BOOL) isEligibleForPrediction
+  isEligibleForPublicIndexing:(BOOL)isEligibleForPublicIndexing
+  isEligibleForHandoff:(BOOL)isEligibleForHandoff
            title:(NSString *)title
+           persistentIdentifier:(NSString *)persistentIdentifier
       webpageURL:(NSString *)webpageURL
         userInfo:(NSDictionary *)userInfo
     locationInfo:(NSDictionary *)locationInfo
@@ -32,16 +34,18 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
 
     NSUserActivity* activity = [[NSUserActivity alloc] initWithActivityType:activityType];
 
-    activity.eligibleForSearch = eligibleForSearch;
-    activity.eligibleForPublicIndexing = eligibleForPublicIndexing;
-    activity.eligibleForHandoff = eligibleForHandoff;
+    activity.isEligibleForSearch = isEligibleForSearch;
+    activity.isEligibleForPrediction = isEligibleForPrediction;
+    activity.isEligibleForPublicIndexing = isEligibleForPublicIndexing;
+    activity.isEligibleForHandoff = isEligibleForHandoff;
 
     activity.title = title;
     activity.webpageURL = [NSURL URLWithString:webpageURL];
     activity.userInfo = userInfo;
+    activity.persistentIdentifier = persistentIdentifier;
 
     activity.keywords = [NSSet setWithArray:@[title]];
-    
+
     if ([CSSearchableItemAttributeSet class]) {
         CSSearchableItemAttributeSet *contentSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:activityType];
         contentSet.title = title;
