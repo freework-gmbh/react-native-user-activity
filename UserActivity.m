@@ -13,6 +13,7 @@ RCT_EXPORT_METHOD(
   isEligibleForPublicIndexing:(BOOL)isEligibleForPublicIndexing
   isEligibleForHandoff:(BOOL)isEligibleForHandoff
            title:(NSString *)title
+           suggestedInvocationPhrase:(NSString *)title
            persistentIdentifier:(NSString *)persistentIdentifier
       webpageURL:(NSString *)webpageURL
         userInfo:(NSDictionary *)userInfo
@@ -46,6 +47,7 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         if (@available(iOS 12.0, *)) {
             activity.eligibleForPrediction = isEligibleForPrediction;
             activity.persistentIdentifier = persistentIdentifier;
+            activity.suggestedInvocationPhrase = suggestedInvocationPhrase;
         }
     #endif
 
