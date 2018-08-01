@@ -1,4 +1,4 @@
-#import "RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
 #import <Foundation/Foundation.h>
 
 @interface UserActivity : NSObject <RCTBridgeModule>
