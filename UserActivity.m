@@ -1,6 +1,7 @@
 #import "UserActivity.h"
 @import CoreSpotlight;
 @import MapKit;
+@import Intents;
 
 @implementation UserActivity
 
@@ -13,7 +14,7 @@ RCT_EXPORT_METHOD(
   isEligibleForPublicIndexing:(BOOL)isEligibleForPublicIndexing
   isEligibleForHandoff:(BOOL)isEligibleForHandoff
            title:(NSString *)title
-           suggestedInvocationPhrase:(NSString *)title
+           suggestedInvocationPhrase:(NSString *)suggestedInvocationPhrase
            persistentIdentifier:(NSString *)persistentIdentifier
       webpageURL:(NSString *)webpageURL
         userInfo:(NSDictionary *)userInfo
