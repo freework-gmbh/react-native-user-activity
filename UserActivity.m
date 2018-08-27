@@ -42,7 +42,10 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
 
     activity.title = title;
     activity.webpageURL = [NSURL URLWithString:webpageURL];
-    activity.userInfo = userInfo;
+
+    NSMutableDictionary *expandedUserInfo = [NSMutableDictionary dictionaryWithDictionary: userInfo];
+    expandedUserInfo[@"siriAction"] = @YES;
+      activity.userInfo = [NSDictionary dictionaryWithDictionary: expandedUserInfo];
 
     #ifdef __IPHONE_12_0
         if (@available(iOS 12.0, *)) {
